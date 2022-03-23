@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!--
+      This page is used to illustrate cookies creation and deletion with JS
+    -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="examples.css" />
+    <title>Lessons 18 Examples</title>
+  </head>
+  <body>
+    <header>
+      <img src="images/img0.jpg" alt="Header image" />
+      <nav>
+        <ul>
+          <li>
+            <a href="createcookies.html">Create Cookies</a>
+          </li>
+          <li>
+            <a href="retrievecookies.html">Retrieve Cookies</a>
+          </li>
+          <li>
+            <a href="statepersistence.html">State Persistence</a>
+          </li>
+          <li>
+            <a href="localstorage.html">Local Storage</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <main id="main">
+      <div>
+        <button id="simplecookie">Simple Cookie</button>
+        <button id="morecookies">More Cookies</button>
+        <button id="mvCookie">M-valued Cookie</button>
+        <button id="deletecookie">Delete cookie</button>
+      </div>
+      <h3>You may test the cookie examples in one of the following ways:</h3>
+      <ol>
+        <li>view the page off a remote web server.</li>
+        <li>
+          view the page off a local web server, such as XAMPP or a nodejs web
+          server
+        </li>
+        <li>
+          view the page off the local file system without using a web server. In
+          that case, you shoud preview it using Firefox. If the visual
+          inspection tool doesn't work, use FF's Console tool to inspect the
+          cookies by issuing command, document.cookie.
+        </li>
+      </ol>
+      <div id="output"></div>
+    </main>
+    <footer></footer>
+    <script src="createcookies.js"></script>
+  </body>
+</html>

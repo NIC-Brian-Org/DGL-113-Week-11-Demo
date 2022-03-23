@@ -1,0 +1,113 @@
+@charset "utf-8";
+
+body {
+  width: 90%;
+  margin: auto;
+  border: 1px solid;
+}
+header img {
+  width: 100%;
+  height: 10em;
+}
+nav ul {
+  display: flex;
+}
+nav li {
+  flex: 1 1 45%;
+  text-align: center;
+}
+nav ul {
+  list-style: none;
+}
+nav a {
+  text-decoration: none;
+  font-size: 1.2em;
+}
+
+h1,
+h2,
+h3,
+footer {
+  text-align: center;
+}
+main {
+  min-height: 300px;
+  text-align: center;
+}
+/*
+main button {
+  width: 10em;
+  margin: 0.3em;
+}
+*/
+main ol {
+  width: 60%;
+  min-width: 20em;
+  margin: auto;
+  text-align: left;
+}
+section {
+  box-sizing: border-box;
+  border: 1px solid;
+  min-height: 300px;
+  min-width: 300px;
+  width: 50%;
+  float: left;
+}
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+}
+p {
+  margin-top: 0;
+}
+footer {
+  clear: both;
+  border-top: 1px solid;
+}
+table {
+  border-collapse: collapse;
+  width: 90%;
+  margin: auto;
+}
+table,
+th,
+td {
+  border: 1px solid;
+}
+
+/* The 2 classes are for event handling */
+.setBackColor {
+  background-color: #b9e7e7;
+}
+.setFont {
+  font-family: fantasy;
+}
+
+video {
+  width: 90%;
+  margin: auto;
+  height: 280px;;
+}
+/**
+These 2 rules are for animation features
+*/
+main * {
+  position: relative;
+  left: 0em;
+  transition: opacity 2s, left 2s;
+}
+.animate {
+  opacity: 0.5;
+  left: 200px;
+}
+
+@media only screen and (max-width: 680px) {
+  section {
+    width: 90%;
+    margin: auto;
+    float: none;
+  }
+}
