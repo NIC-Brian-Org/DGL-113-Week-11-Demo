@@ -25,7 +25,7 @@ function simpleCookie() {
   // ask user for a cookie value
   let cookieValue = prompt("enter the cookie value please");
   // simple way for creating a cookie
-  document.cookie = `${cookieName}=${cookieValue}`;
+  document.cookie = `${cookieName}=${cookieValue}; SameSite=Strict`;
   // show the cookie created - assumed.
   document.querySelector(
     "#output"
@@ -60,11 +60,12 @@ function createCookie(name, value, days, path, domain, secure) {
     date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000); // Think: what the formula is about?
     expires = date.toGMTString();
   } else expires = "";
-  let cookieString = name + "=" + escape(value);
+  let cookieString = name + "=" + encodeURIComponent(value);
   if (expires) cookieString += "; expires=" + expires;
-  if (path) cookieString += "; path=" + escape(path);
-  if (domain) cookieString += "; domain=" + escape(domain);
+  if (path) cookieString += "; path=" + encodeURIComponent(path);
+  if (domain) cookieString += "; domain=" + encodeURIComponent(domain);
   if (secure) cookieString += "; secure";
+  cookieString += "; SameSite=Strict";
   document.cookie = cookieString;
 }
 
@@ -80,7 +81,7 @@ function mvCookie() {
   //ask user for the 2nd value
   let userMemNum = prompt("enter your membershiop number please:");
   // create a m-valued cookie; each name-value pair is separated by a |
-  document.cookie = `user=${userName}|${userAge}|${userMemNum};`;
+  document.cookie = `user=${userName}|${userAge}|${userMemNum}; SameSite=Strict`;
   // show the cookie created - assumed.
   document.querySelector(
     "#output"

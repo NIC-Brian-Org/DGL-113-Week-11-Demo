@@ -20,7 +20,8 @@ function statepersistence() {
     if (ans == "y") {
       let value = prompt(`please enter the value for the cookie ${name}`);
       if (value) {
-        document.cookie = `${name}=${value}`;
+        document.body.style.backgroundColor = value;
+        document.cookie = `${name}=${value}; SameSite=Strict`;
       }
     }
   }
@@ -37,7 +38,7 @@ function getCookie(name) {
   for (let cookie of cookies) {
     cookie = cookie.trim(); //remove any padding leading and trailing spaces
     if (cookie.indexOf(nameEquals) == 0) {
-      return unescape(cookie.substring(nameEquals.length, cookie.length));
+      return decodeURIComponent(cookie.substring(nameEquals.length, cookie.length));
     }
   } //end of for loop
   return null;

@@ -39,7 +39,7 @@ function getCookie(name) {
   for (let cookie of cookies) {
     cookie = cookie.trim(); //remove any leading and trailing spaces
     if (cookie.indexOf(nameEquals) == 0) {
-      return unescape(cookie.substring(nameEquals.length, cookie.length));
+      return decodeURIComponent(cookie.substring(nameEquals.length, cookie.length));
     }
   } //end of for loop
   return null;
@@ -51,38 +51,14 @@ function getCookie(name) {
   Finally show the table on the page
 */
 function showAllCookies() {
-  let cookies = unescape(document.cookie).split(";");
+  let cookies = decodeURIComponent(document.cookie).split(";");
   let htmlstr = "<table><tr><th>Cookie Name</th><th>Cookie Value</th></tr>";
   for (let cookie of cookies) {
     const [name, value] = cookie.split("=");
-    htmlstr += `<tr><td>${name}:</td><td>${unescape(value)}</td></tr>`;
+    htmlstr += `<tr><td>${name}:</td><td>${decodeURIComponent(value)}</td></tr>`;
   }
   htmlstr += "</table>";
   document.getElementById("output").innerHTML = htmlstr;
-}
-
-/**
- * The function below will create a cookies based on the parameter values provided.
- * @param {string} name
- * @param {string} value
- * @param {integer} days
- * @param {string} path
- * @param {string} domain
- * @param {string} secure
- */
-function createCookie(name, value, days, path, domain, secure) {
-  let expires; //why need to declare it here but not in the if block? The textbook code has a bug on this.
-  if (days) {
-    let date = new Date();
-    date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
-    expires = date.toGMTString();
-  } else expires = "";
-  let cookieString = name + "=" + escape(value);
-  if (expires) cookieString += "; expires=" + expires;
-  if (path) cookieString += "; path=" + escape(path);
-  if (domain) cookieString += "; domain=" + escape(domain);
-  if (secure) cookieString += "; secure";
-  document.cookie = cookieString;
 }
 
 /**
