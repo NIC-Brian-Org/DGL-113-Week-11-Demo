@@ -18,7 +18,7 @@ function statepersistence() {
     // if the 1st lettre is "y" in the response, create a new cookie backcolor
     ans = ans.trim().toLowerCase()[0];
     if (ans == "y") {
-      let value = prompt(`please enter the value for the cookie ${name}`);
+      let value = encodeURIComponent(prompt(`please enter the value for the cookie ${name}`));
       if (value) {
         document.body.style.backgroundColor = value;
         document.cookie = `${name}=${value}; SameSite=Strict`;

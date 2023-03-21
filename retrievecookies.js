@@ -18,15 +18,30 @@ window.onload = function () {
 function mvaluedCookie() {
   // for this one, we assume only specific cookie, i.e., user, has the multi-values
   // let user = prompt("multi-vlued cookie name please:");
-  let userData = getCookie("user");
+  let userData = getCookieRaw("user");
   if (userData) {
     let [name, age, memNo] = userData.split("|");
+    name = decodeURIComponent( name );
+    age = decodeURIComponent( age );
+    memNo = decodeURIComponent( memNo );
     document.getElementById("output").innerHTML = `Cookie user has these values:
           name:${name}; age: ${age}; Member#: ${memNo}`;
   } else {
     document.getElementById("output").innerHTML =
       "<p>The multi-valued cookie doesn't exist. Create it on Create Cookies page, then try it again here.</p>";
   }
+}
+
+function getCookieRaw(name) {
+  let nameEquals = name + "=";
+  let cookies = document.cookie.split(";");
+  for (let cookie of cookies) {
+    cookie = cookie.trim(); //remove any leading and trailing spaces
+    if (cookie.indexOf(nameEquals) == 0) {
+      return cookie.substring(nameEquals.length, cookie.length);
+    }
+  } //end of for loop
+  return null;
 }
 
 /**
