@@ -10,7 +10,7 @@ function statepersistence() {
   let name = "backcolor";
   let cookie = getCookie(name);
   if (cookie) {
-    document.body.style.backgroundColor = cookie;
+    document.body.style.backgroundColor = decodeURIComponent(cookie);
   } else {
     let ans = prompt(
       `The cookie named ${name} doesn't exist. Do you want to create it?`
@@ -21,25 +21,9 @@ function statepersistence() {
       let value = encodeURIComponent(prompt(`please enter the value for the cookie ${name}`));
       if (value) {
         document.body.style.backgroundColor = value;
-        document.cookie = `${name}=${value}; SameSite=Strict`;
+        createCookie( name, value );
       }
     }
   }
 }
 
-/**
- * This function is the same function as in retrievecookie.js file. 
- * It will retrieve and return the named cookie, if found.
- * Otherwise, it will return null.
- * */
-function getCookie(name) {
-  let nameEquals = name + "=";
-  let cookies = document.cookie.split(";");
-  for (let cookie of cookies) {
-    cookie = cookie.trim(); //remove any padding leading and trailing spaces
-    if (cookie.indexOf(nameEquals) == 0) {
-      return decodeURIComponent(cookie.substring(nameEquals.length, cookie.length));
-    }
-  } //end of for loop
-  return null;
-}

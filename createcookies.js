@@ -44,30 +44,6 @@ function moreCookie() {
     "<p>3 predefined cookies are created</p>";
 }
 
-/**
- * The function below wil create a cookies based on the parameter values provided.
- * @param {string} name
- * @param {string} value
- * @param {integer} days
- * @param {string} path
- * @param {string} domain
- * @param {string} secure
- */
-function createCookie(name, value, days, path, domain, secure) {
-  let expires; // Think: why need to declare it here but not in the if block? The textbook code has a bug on this.
-  if (days) {
-    let date = new Date();
-    date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000); // Think: what the formula is about?
-    expires = date.toGMTString();
-  } else expires = "";
-  let cookieString = encodeURIComponent(name) + "=" + encodeURIComponent(value);
-  if (expires) cookieString += "; expires=" + expires;
-  if (path) cookieString += "; path=" + encodeURIComponent(path);
-  if (domain) cookieString += "; domain=" + encodeURIComponent(domain);
-  if (secure) cookieString += "; secure";
-  cookieString += "; SameSite=Strict";
-  document.cookie = cookieString;
-}
 
 /**
  * Create a multi-valued cookie. For the purpose of illustration it asks the user for
@@ -81,7 +57,7 @@ function mvCookie() {
   //ask user for the 2nd value
   let userMemNum = encodeURIComponent(prompt("enter your membershiop number please:"));
   // create a m-valued cookie; each name-value pair is separated by a |
-  document.cookie = `user=${userName}|${userAge}|${userMemNum}; SameSite=Strict`;
+  createCookie( 'user', `${userName}|${userAge}|${userMemNum}` );
   // show the cookie created - assumed.
   document.querySelector(
     "#output"

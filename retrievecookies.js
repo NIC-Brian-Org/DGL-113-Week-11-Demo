@@ -18,7 +18,7 @@ window.onload = function () {
 function mvaluedCookie() {
   // for this one, we assume only specific cookie, i.e., user, has the multi-values
   // let user = prompt("multi-vlued cookie name please:");
-  let userData = getCookieRaw("user");
+  let userData = getCookie("user");
   if (userData) {
     let [name, age, memNo] = userData.split("|");
     name = decodeURIComponent( name );
@@ -32,45 +32,17 @@ function mvaluedCookie() {
   }
 }
 
-function getCookieRaw(name) {
-  let nameEquals = name + "=";
-  let cookies = document.cookie.split(";");
-  for (let cookie of cookies) {
-    cookie = cookie.trim(); //remove any leading and trailing spaces
-    if (cookie.indexOf(nameEquals) == 0) {
-      return cookie.substring(nameEquals.length, cookie.length);
-    }
-  } //end of for loop
-  return null;
-}
-
-/**
- * This function will retrieve and return the named cookie, if found.
- * Otherwise, it will return null
- * */
-function getCookie(name) {
-  let nameEquals = name + "=";
-  let cookies = document.cookie.split(";");
-  for (let cookie of cookies) {
-    cookie = cookie.trim(); //remove any leading and trailing spaces
-    if (cookie.indexOf(nameEquals) == 0) {
-      return decodeURIComponent(cookie.substring(nameEquals.length, cookie.length));
-    }
-  } //end of for loop
-  return null;
-}
-
 /*
   Get the name=value array of all cookies.
   Then make a table string using the names and values.
   Finally show the table on the page
 */
 function showAllCookies() {
-  let cookies = decodeURIComponent(document.cookie).split(";");
+  let cookies = document.cookie.split(";");
   let htmlstr = "<table><tr><th>Cookie Name</th><th>Cookie Value</th></tr>";
   for (let cookie of cookies) {
     const [name, value] = cookie.split("=");
-    htmlstr += `<tr><td>${name}:</td><td>${decodeURIComponent(value)}</td></tr>`;
+    htmlstr += `<tr><td>${name}:</td><td>${value}</td></tr>`;
   }
   htmlstr += "</table>";
   document.getElementById("output").innerHTML = htmlstr;
